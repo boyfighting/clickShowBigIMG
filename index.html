@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src='js/jquery-1.12.2.min.js'></script>
+    <link rel="stylesheet" href="images/index.css">
+</head>
+<body>
+    <div class="picture">
+        <a href="javaccript:;"><img src="images/pic01-s.jpg" alt="" data-src-wide="images/pic01-1.jpg" class="viewbigpic"></a>
+        <a href="javaccript:;"><img src="images/pic02-s.jpg" alt="" data-src-wide="images/pic02-1.jpg" class="viewbigpic"></a>
+        <a href="javaccript:;"><img src="images/pic03-s.jpg" alt="" data-src-wide="images/pic03-1.jpg" class="viewbigpic"></a>
+        <a href="javaccript:;"><img src="images/pic04-s.jpg" alt="" data-src-wide="images/pic04-1.jpg" class="viewbigpic"></a>
+    </div>
+    <div class="carrousel"> 
+        <div class="wrapper">
+            <div class="close"></div>
+            <img src="" alt="" />
+        </div>
+    </div>
+</body>
+<script>
+        var w = $(window).width();
+        var h = $(window).height();
+        function resizeLunbo(){
+            w = $(window).width();
+            h = $(window).height();
+        
+            var img_h = h-100;
+            var img_w = 1.34*img_h;
+            $(".wrapper").width(img_w);
+            $(".wrapper").height(img_h);
+            $(".wrapper").css("margin-top",(h-img_h)/2);
+            $(".wrapper").css("margin-left",(w-img_w)/2);
+        }
+        $(document).ready(function(){
+            resizeLunbo();
+        });
+        $(window).resize(function(){
+            resizeLunbo();
+        });
+        //点击查看大图
+        var carrousel = $( ".carrousel" );
+        $( ".viewbigpic" ).click( function(e){
+          var src = $(this).attr( "data-src-wide" );
+          var src1 = $(this).attr( "data-src-wide1" );
+          carrousel.find("img").attr( "src", src );
+          $( ".download a:eq(0)" ).attr( "href", src1 );
+          carrousel.fadeIn( 200 );
+        });
+        carrousel.find('.close').click( function(e){
+          carrousel.find( "img" ).attr( "src", '' );
+          carrousel.fadeOut( 200 );
+        } );
+        </script>
+</html>
